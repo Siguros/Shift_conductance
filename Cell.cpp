@@ -334,7 +334,9 @@ RealDevice::RealDevice(int x, int y,int NumCellperSynapse) {
 	//sigmaCtoC = 0.035*(maxConductance - minConductance);	// Sigma of cycle-to-cycle weight update vairation: defined as the percentage of conductance range
 	sigmaCtoC = 0;
 	gaussian_dist3 = new std::normal_distribution<double>(0, sigmaCtoC);    // Set up mean and stddev for cycle-to-cycle weight update vairation
-
+	linearpointltp = getLinear(paramALTP, maxNumLevelLTP);
+	linearpointltp = getLinear(paramALTD, maxNumLevelLTD);
+	symmetricpoint = getSymmetric(paramALTP, maxNumLevelLTP, paramALTD, maxNumLevelLTD);
 	/* Conductance range variation */
 	conductanceRangeVar = false;    // Consider variation of conductance range or not
 	maxConductanceVar = 0;  // Sigma of maxConductance variation (S)
