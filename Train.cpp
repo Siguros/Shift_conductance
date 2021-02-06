@@ -146,10 +146,10 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
                  //printf("This is AnalogNVM\n");
                  readVoltage = static_cast<eNVM*>(arrayIH->cell[0][0])->readVoltage;
 				 readPulseWidth = static_cast<eNVM*>(arrayIH->cell[0][0])->readPulseWidth;
-		   double Linearpointltp = static_cast<eNVM*>(arrayIH->cell[0][0])->linearpointltp;
-		   double Linearpointltd = static_cast<eNVM*>(arrayIH->cell[0][0])->linearpointltd;
-		   double symmetricpoint = static_cast<eNVM*>(arrayIH->cell[0][0])->symmetricpoint;
-		   std::cout << Linearpointltp << " " << Linearpointltd << " " << symmetricpoint<<std::endl;
+		 //  double Linearpointltp = static_cast<eNVM*>(arrayIH->cell[0][0])->linearpointltp;
+		   //double Linearpointltd = static_cast<eNVM*>(arrayIH->cell[0][0])->linearpointltd;
+		   //double symmetricpoint = static_cast<eNVM*>(arrayIH->cell[0][0])->symmetricpoint;
+		   //std::cout << Linearpointltp << " " << Linearpointltd << " " << symmetricpoint<<std::endl;
            }
             #pragma omp parallel for reduction(+: sumArrayReadEnergy)
 				for (int j=0; j<param->nHide; j++) {
