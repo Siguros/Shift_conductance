@@ -84,8 +84,7 @@ void AnalogNVM::WriteEnergyCalculation(double wireCapCol) {
 			writeEnergy += writeVoltageLTD/2 * writeVoltageLTD/2 * conductancePrevAtHalfVwLTD * writeLatencyLTD;
 			writeEnergy += writeVoltageLTD/2 * writeVoltageLTD/2 * wireCapCol;
 		}
-	} else {    // If not cross-point array or not considering I-V non
-		ity
+	} else {    // If not cross-point array or not considering I-V nonity
 		if (FeFET) {	// FeFET structure
 			if (cmosAccess) {
 				if (numPulse > 0) { // If the cell needs LTP pulses
