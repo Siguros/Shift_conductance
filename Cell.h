@@ -95,6 +95,9 @@ public:
 	bool conductanceRangeVar;	// Consider variation of conductance range or not
 	double maxConductanceVar;	// Sigma of maxConductance variation (S)
 	double minConductanceVar;	// Sigma of minConductance variation (S)
+	double linearpointltp;
+	double linearpointltd;
+	double symmetricpoint;
 };
 
 class SRAM: public Cell {
@@ -182,9 +185,7 @@ public:
 	double sigmaDtoD;	// Sigma of device-to-device variation on weight update nonliearity baseline
 	double sigmaCtoC;	// Sigma of cycle-to-cycle variation on weight update
 
-	double linearpointltp;
-	double linearpointltd;
-	double symmetricpoint;
+
 
 	RealDevice(int x, int y ,int NumcellPerSynapse);
 	double Read(double voltage);	// Return read current (A)
