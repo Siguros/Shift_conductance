@@ -270,8 +270,7 @@ RealDevice::RealDevice(int x, int y,int NumCellperSynapse) {
 	//minConductance = maxConductance /50.2;
 	//maxConductance = (1/5e6);
 	//minConductance = maxConductance/2;
-	shiftGmax = minConductance + 0.9*(maxConductance-minConductance);
-	shiftGmin = minConductance + 0.7*(maxConductance-minConductance);
+
 	//avgMaxConductance = (NumCellperSynapse)*maxConductance; // Average maximum cell conductance (S)
 	//avgMinConductance = (NumCellperSynapse)*minConductance; // Average minimum cell conductance (S)
 	avgMaxConductance = (NumCellperSynapse)*shiftGmax;
@@ -337,6 +336,9 @@ RealDevice::RealDevice(int x, int y,int NumCellperSynapse) {
 	gaussian_dist3 = new std::normal_distribution<double>(0, sigmaCtoC);    // Set up mean and stddev for cycle-to-cycle weight update vairation
 	linearpointltp = getLinear(paramALTP, maxNumLevelLTP);
 	linearpointltd= getLinear(paramALTD, maxNumLevelLTD);
+	double shitconductancelevel=32;
+	shiftGmax = minConductance+((linearpointltp+shiftconductancelevel/2)/maxNumLTP*(maxConductance-minConductance);
+	shiftGmin = minConductance+((linearpointltp-shiftconductancelevel/2)/maxNumLTP*(maxConductance-minConductance);
 	symmetricpoint = getSymmetric(paramALTP, maxNumLevelLTP, paramALTD, maxNumLevelLTD);
 	/* Conductance range variation */
 	conductanceRangeVar = false;    // Consider variation of conductance range or not
