@@ -84,7 +84,8 @@ void AnalogNVM::WriteEnergyCalculation(double wireCapCol) {
 			writeEnergy += writeVoltageLTD/2 * writeVoltageLTD/2 * conductancePrevAtHalfVwLTD * writeLatencyLTD;
 			writeEnergy += writeVoltageLTD/2 * writeVoltageLTD/2 * wireCapCol;
 		}
-	} else {    // If not cross-point array or not considering I-V nonlinearity
+	} else {    // If not cross-point array or not considering I-V non
+		ity
 		if (FeFET) {	// FeFET structure
 			if (cmosAccess) {
 				if (numPulse > 0) { // If the cell needs LTP pulses
@@ -329,13 +330,14 @@ RealDevice::RealDevice(int x, int y,int NumCellperSynapse) {
 	gaussian_dist2 = new std::normal_distribution<double>(0, sigmaDtoD);	// Set up mean and stddev for device-to-device weight update vairation
 	paramALTP = getParamA(NL_LTP + (*gaussian_dist2)(localGen)) * maxNumLevelLTP;	// Parameter A for LTP nonlinearity
 	paramALTD = getParamA(NL_LTD + (*gaussian_dist2)(localGen)) * maxNumLevelLTD;	// Parameter A for LTD nonlinearity
-
+	paramBLTP = (maxConductance - minConductance) / (1 - exp(-maxNumLevelLTP/paramALTP));
+	paramBLTD = (maxConductance - minConductance) / (1 - exp(-maxNumLevelLTD/paramALTD));
 	/* Cycle-to-cycle weight update variation */
 	//sigmaCtoC = 0.035*(maxConductance - minConductance);	// Sigma of cycle-to-cycle weight update vairation: defined as the percentage of conductance range
 	sigmaCtoC = 0;
 	gaussian_dist3 = new std::normal_distribution<double>(0, sigmaCtoC);    // Set up mean and stddev for cycle-to-cycle weight update vairation
-	linearpointltp = getLinear(paramALTP, maxNumLevelLTP);
-	linearpointltp = getLinear(paramALTD, maxNumLevelLTD);
+	linearpointltp = getLinear(paramALTP, maxNumLevelLTP,paramBLTP);
+	linearpointltp = getLinear(paramALTD, maxNumLevelLTD,paramBLTD);
 	symmetricpoint = getSymmetric(paramALTP, maxNumLevelLTP, paramALTD, maxNumLevelLTD);
 	/* Conductance range variation */
 	conductanceRangeVar = false;    // Consider variation of conductance range or not
