@@ -182,7 +182,9 @@ public:
 	double sigmaDtoD;	// Sigma of device-to-device variation on weight update nonliearity baseline
 	double sigmaCtoC;	// Sigma of cycle-to-cycle variation on weight update
 
-	
+	double linearpointltp;
+	double linearpointltd;
+	double symmetricpoint;
 
 	RealDevice(int x, int y ,int NumcellPerSynapse);
 	double Read(double voltage);	// Return read current (A)
